@@ -1119,11 +1119,11 @@ function onChangeOptions(onchange_field, onchange_value, destination_id, second_
             //            alert(next_params);
 
         }
-//    $("#loadMe").modal({
-//        backdrop: "static", //remove ability to close modal with click
-//        keyboard: false, //remove option to close with keyboard
-//        show: true //Display loader!
-//    });
+    $("#loadMe").modal({
+        backdrop: "static", //remove ability to close modal with click
+        keyboard: false, //remove option to close with keyboard
+        show: true //Display loader!
+    });
 
 
         $.ajax({
@@ -1133,7 +1133,7 @@ function onChangeOptions(onchange_field, onchange_value, destination_id, second_
             success: function (response) {
 
 
-                // $("#loadMe").modal("hide");
+                 $("#loadMe").modal("hide");
                 //  alert('onChangeOptions');
                 var data = JSON.parse(response);
                 console.log(data);
