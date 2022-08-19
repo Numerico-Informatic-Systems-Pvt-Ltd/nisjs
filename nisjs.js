@@ -1167,3 +1167,16 @@ function onChangeOptions(onchange_field, onchange_value, destination_id, second_
             }
         });
     }
+
+// Fiel Zise
+
+$('input:file').on('change', function () {
+        for (var i = 0; i < this.files.length; i++) {
+            if (this.files[i].size > maxFileSize) {
+                swal("Max allowed file size exceeded.")
+                        .then((value) => {                          
+                            $(this).val("");
+                        });
+            }
+        }
+});
