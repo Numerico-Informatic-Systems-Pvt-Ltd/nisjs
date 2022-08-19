@@ -1172,7 +1172,7 @@ function onChangeOptions(onchange_field, onchange_value, destination_id, second_
 
 $('input:file').on('change', function () {
         for (var i = 0; i < this.files.length; i++) {
-            if (this.files[i].size > maxFileSize) {
+            if (this.files[i].size > (maxFileSize * 1024*1024)) {
                 swal("Max allowed file size exceeded.")
                         .then((value) => {                          
                             $(this).val("");
