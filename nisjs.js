@@ -810,6 +810,7 @@ jQuery(function () {
 //        return false;
 //    });
 
+/*
 $(":input").bind("paste", function (e) {
     // access the clipboard using the api
     var pastedData = e.originalEvent.clipboardData.getData('text');
@@ -821,6 +822,7 @@ $(":input").bind("paste", function (e) {
     alert('The content you are trying to copy-paste contains invalid characters. Only letter,viz. [A - Z], numbers and following spcial characters @ # $ & : . / allowed. Please try again after replacing invalid characters.')
     return false;
 });
+*/
 
 $(document).ready(function () {
     //        $(document).ready(function () {
