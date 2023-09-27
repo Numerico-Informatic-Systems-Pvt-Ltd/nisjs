@@ -956,16 +956,44 @@ $(function () {
         changeYear: true
     });
 
-    $('body').on('focus', '.date_format', function () {
-        //  alert("asa");
+    // $('body').on('focus', '.date_format', function () {
+    //     //  alert("asa");
+    //     $(this).datepicker({
+    //         dateFormat: 'dd-mm-yy',
+    //         changeMonth: true,
+    //         changeYear: true,
+    //         minDate: new Date(minDatemmddyy),
+    //         maxDate: new Date(maxDatemmddyy)
+    //     });
+    // });
+
+      $('body').on('focus', '.date_format', function () {
+
+        var local_minDatemmddyy = '';
+        var local_maxDatemmddyy = '';
+        var min_date = jQuery(this).attr('min_date');
+        if (typeof min_date !== 'undefined') {
+            minDatemmddyy = $(this).attr('min_date');
+        }
+
+        var max_date = jQuery(this).attr('max_date');
+        if (typeof max_date !== 'undefined') {
+            maxDatemmddyy = $(this).attr('max_date');
+        }
+
+        local_minDatemmddyy = (local_minDatemmddyy !== '') ? local_minDatemmddyy : minDatemmddyy;
+        local_maxDatemmddyy = (local_maxDatemmddyy !== '') ? local_maxDatemmddyy : maxDatemmddyy;
+
+
         $(this).datepicker({
             dateFormat: 'dd-mm-yy',
             changeMonth: true,
             changeYear: true,
-            minDate: new Date(minDatemmddyy),
-            maxDate: new Date(maxDatemmddyy)
+            minDate: new Date(local_minDatemmddyy),
+            maxDate: new Date(local_maxDatemmddyy)
         });
     });
+
 
     $("#ended").datepicker({
         dateFormat: 'dd-mm-yy',
@@ -1182,3 +1210,32 @@ $('input:file').on('change', function () {
             }
         }
 });
+
+    function oneToAnother(word, id, type, max_min_attr) {
+        if (type == 'date') {
+            var reverseWord = word.split("-").reverse().join("-");
+            $('#' + id).datepicker('destroy');
+            $('#' + id).attr(max_min_attr, reverseWord);
+            $('#' + id).val('');
+        }
+        if (type == 'number') {
+            var reverseWord = word.split("-").reverse().join("-");
+            $('#' + id).attr(max_min_attr, reverseWord);
+            $('#' + id).val('');
+        }
+    }
+
+    function oneToAnotherandRemoveRequired(own, word, id, type, max_min_attr) {
+
+        if (type == 'number') {
+            $('#' + id).attr(max_min_attr, 0);
+            $('#' + id).prop('required', false);
+            $('#' + id).labels().removeClass("text-danger");
+            $('#' + id).val('');
+
+            $('#' + own).prop('required', true);
+            $('#' + own).labels().addClass("text-danger");
+            $('#' + own).attr(max_min_attr, 1);
+        }
+    }
+
